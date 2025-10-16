@@ -1,169 +1,192 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profil Saya</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Page - [Nama Anda]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Utama */
+        :root {
+            /* Warna Kalem dan Elegan */
+            --warna-dasar: #1c2630; /* Biru tua/abu-abu gelap kalem */
+            --warna-aksen: #a8dadc; /* Biru muda/cyan pucat */
+            --warna-teks-terang: #e0f2f1; /* Putih keabu-abuan sangat terang */
+            --warna-konten: rgba(44, 62, 80, 0.85); /* Box konten semi-transparan */
+            --font-utama: 'Montserrat', sans-serif;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #ffffff;
-      color: #333;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-utama);
+            color: var(--warna-teks-terang);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Penting untuk efek bintang */
+        }
 
-    /* Header dengan gambar perempuan di hutan */
-    .hero {
-      background-image: url('poto1.jpg');
-      background-size: cover;
-      background-position: center;
-      height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      position: relative;
-      text-align: center;
-    }
+        /* Latar Belakang Bintang Bergerak */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--warna-dasar);
+            z-index: -2; /* Di belakang semua konten */
+            animation: move-background 100s linear infinite; /* Animasi gerak lambat */
+        }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1;
-    }
+        /* Keyframes untuk Animasi Latar Belakang */
+        @keyframes move-background {
+            from { background-position: 0 0; }
+            to { background-position: 10000px 5000px; } /* Gerakan lambat yang luas */
+        }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
+        /* Style Bintang (dibuat via JavaScript, tapi kita siapkan style dasarnya) */
+        .star {
+            position: absolute;
+            background: var(--warna-teks-terang);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: blink 1.5s infinite alternate; /* Animasi berkelip */
+        }
 
-    .hero h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
+        @keyframes blink {
+            from { opacity: 0.2; }
+            to { opacity: 0.8; }
+        }
 
-    .hero p {
-      font-size: 1.3rem;
-      margin-top: 0.5rem;
-    }
+        /* Konten Utama */
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            background: var(--warna-konten);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: 20px;
+            backdrop-filter: blur(5px); /* Efek blur pada background konten */
+            z-index: 1;
+            transform: translateY(0);
+            transition: transform 0.5s ease-out;
+        }
+        
+        /* Efek Hover Keren pada Konten */
+        .container:hover {
+            transform: translateY(-5px);
+        }
 
-    .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
+        /* Foto Profil Bulat */
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--warna-aksen);
+            box-shadow: 0 0 15px var(--warna-aksen);
+            margin-bottom: 20px;
+        }
 
-    section {
-      margin-bottom: 2rem;
-    }
+        h1 {
+            color: var(--warna-aksen);
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
 
-    h2 {
-      border-left: 5px solid #3498db;
-      padding-left: 10px;
-      color: #2c3e50;
-    }
+        h2 {
+            font-weight: 400;
+            color: var(--warna-teks-terang);
+            opacity: 0.9;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
 
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 1rem;
-    }
+        /* Deskripsi Diri dengan Gaya Menarik */
+        .description {
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            border-left: 3px solid var(--warna-aksen);
+            padding-left: 15px;
+            text-align: left;
+            font-size: 1.1em;
+        }
 
-    .skills span {
-      background: #ecf0f1;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.95rem;
-    }
+        /* Tombol Aksi */
+        .social-links a {
+            display: inline-block;
+            color: var(--warna-teks-terang);
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border: 2px solid var(--warna-aksen);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
 
-    .social {
-      text-align: center;
-      margin-top: 2rem;
-    }
+        .social-links a:hover {
+            background-color: var(--warna-aksen);
+            color: var(--warna-dasar);
+            transform: scale(1.05);
+            box-shadow: 0 0 10px var(--warna-aksen);
+        }
 
-    .social a {
-      margin: 0 12px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #3498db;
-      transition: color 0.3s;
-    }
-
-    .social a:hover {
-      color: #1abc9c;
-    }
-
-    footer {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .hero p {
-        font-size: 1rem;
-      }
-    }
-  </style>
+    </style>
 </head>
 <body>
 
-  <!-- Hero Section -->
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Tisa novita</h1>
-      <p>Web Developer | UI Designer | Freelancer</p>
+    <div class="stars" id="star-field"></div>
+
+    <div class="container">
+        <img src="poto1.jpg" alt="Foto Profil" class="profile-pic">
+        
+        <h1>[Tisa novita]</h1>
+        <h2>Penjelajah Kehidupan | Kreator Mimpi</h2>
+
+        <div class="description">
+            <p>
+                &ldquo;Saya percaya bahwa hidup adalah kanvas tak terbatas. Setiap hari adalah kesempatan untuk menorehkan warna baru, belajar dari goresan yang salah, dan merayakan setiap detail kecil dari proses kreasi diri. **Bukan tentang menunggu kesempatan, tapi tentang menciptakan cahaya di tengah kegelapan.** Mari berkolaborasi dalam mengukir karya terbaik dari perjalanan ini.&rdquo;
+            </p>
+            <p>— **[Slogan atau Quote Pribadi Anda]**</p>
+        </div>
+
+        <div class="social-links">
+            <a href="#proyek">Lihat Proyek</a>
+            <a href="#kontak">Hubungi Saya</a>
+        </div>
     </div>
-  </div>
 
-  <!-- Main Content -->
-  <div class="container">
-    <section>
-      <h2>Tentang Saya</h2>
-      <p>
-        Hai! Saya adalah seorang pengembang web yang berdedikasi untuk membuat situs web yang modern, fungsional, dan menarik. Saya percaya pada desain yang bersih dan pengalaman pengguna yang intuitif. Mari kita bangun sesuatu yang luar biasa!
-      </p>
-    </section>
+    <script>
+        // JavaScript untuk membuat Bintang-Bintang Secara Dinamis
+        const starField = document.getElementById('star-field');
+        const numStars = 100; // Jumlah bintang
 
-    <section>
-      <h2>Keahlian</h2>
-      <div class="skills">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>JavaScript</span>
-        <span>React</span>
-        <span>Node.js</span>
-        <span>UI/UX</span>
-        <span>WordPress</span>
-      </div>
-    </section>
+        for (let i = 0; i < numStars; i++) {
+            let star = document.createElement('div');
+            star.className = 'star';
+            
+            // Posisi acak
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            
+            // Ukuran acak
+            const size = Math.random() * 3 + 1; // 1px hingga 4px
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            // Penundaan animasi acak (untuk efek yang lebih alami)
+            star.style.animationDelay = `${Math.random() * 5}s`;
 
-    <section class="social">
-      <h2>Hubungi Saya</h2>
-      <a href="mailto:emailanda@example.com">Email</a>
-      <a href="https://linkedin.com/in/username" target="_blank">LinkedIn</a>
-      <a href="https://github.com/username" target="_blank">GitHub</a>
-    </section>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Nama Anda. All rights reserved.
-  </footer>
+            starField.appendChild(star);
+        }
+    </script>
 
 </body>
 </html>
