@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profil Saya</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #333;
+    }
+
+    /* Header dengan gambar perempuan di hutan */
+    .hero {
+      background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+      text-align: center;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-top: 0.5rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      color: #2c3e50;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .skills span {
+      background: #ecf0f1;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    }
+
+    .social {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .social a {
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #3498db;
+      transition: color 0.3s;
+    }
+
+    .social a:hover {
+      color: #1abc9c;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Nama Anda</h1>
+      <p>Web Developer | UI Designer | Freelancer</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <section>
+      <h2>Tentang Saya</h2>
+      <p>
+        Hai! Saya adalah seorang pengembang web yang berdedikasi untuk membuat situs web yang modern, fungsional, dan menarik. Saya percaya pada desain yang bersih dan pengalaman pengguna yang intuitif. Mari kita bangun sesuatu yang luar biasa!
+      </p>
+    </section>
+
+    <section>
+      <h2>Keahlian</h2>
+      <div class="skills">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>React</span>
+        <span>Node.js</span>
+        <span>UI/UX</span>
+        <span>WordPress</span>
+      </div>
+    </section>
+
+    <section class="social">
+      <h2>Hubungi Saya</h2>
+      <a href="mailto:emailanda@example.com">Email</a>
+      <a href="https://linkedin.com/in/username" target="_blank">LinkedIn</a>
+      <a href="https://github.com/username" target="_blank">GitHub</a>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Nama Anda. All rights reserved.
+  </footer>
+
+</body>
+</html>
